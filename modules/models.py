@@ -136,6 +136,8 @@ def huggingface_loader(model_name):
     path_to_model = Path(f'{shared.args.model_dir}/{model_name}')
     if 'chatglm' in model_name.lower():
         LoaderClass = AutoModel
+        shared.args.trust_remote_code = True
+        return LoaderClass.from_pretrained(path_to_model, trust_remote_code=shared.args.trust_remote_code).half().cuda()
     else:
         config = AutoConfig.from_pretrained(path_to_model, trust_remote_code=shared.args.trust_remote_code)
         if config.to_dict().get("is_encoder_decoder", False):

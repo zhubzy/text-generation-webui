@@ -18,6 +18,8 @@ def get_model_settings_from_yamls(model):
 
 
 def infer_loader(model_name):
+    if 'chatglm' in model_name.lower():
+        return 'Transformers'
     path_to_model = Path(f'{shared.args.model_dir}/{model_name}')
     model_settings = get_model_settings_from_yamls(model_name)
     if not path_to_model.exists():
@@ -90,6 +92,8 @@ def apply_model_settings_to_state(model, state):
         loader = infer_loader(model)
         if 'wbits' in model_settings and type(model_settings['wbits']) is int and model_settings['wbits'] > 0:
             loader = 'AutoGPTQ'
+        if 'chatglm' in model.lower():
+            loader = 'Transformers'
 
         # If the user is using an alternative GPTQ loader, let them keep using it
         if not (loader == 'AutoGPTQ' and state['loader'] in ['GPTQ-for-LLaMa', 'ExLlama', 'ExLlama_HF']):

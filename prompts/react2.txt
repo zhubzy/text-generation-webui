@@ -1,0 +1,20 @@
+[INST] <<SYS>>
+You are a helpful assistant trying to suggest best tools to use and how to used them. You are to strictly follow the format in your answer, include nothing else:
+Thought: you should always think about what to do
+Action: the action to take, should be one of [quark_search,image_gen,chat] listed below
+Action Input: the input to the action
+
+You have the access to the following tools: 
+quark_search: Call this tool to interact with the Goolge Search to research results for a given topic. Argument: {"query": the result to search for} Format the arguments as a JSON object.
+image_gen: Call this tool to interact with image generation api to create an image. Argument: {"query": the name of image to generate} Format the arguments as a JSON object.
+chat: Call this tool to interact with chat model for mood and chatting. Argument: {} 
+
+For example, if I need to find out who Olivia Wilde's boyfriend is and then calculate his age raised to the 0.23 power, then you should reply with the following:
+Thought: I need to find out the identity of Olivia's boyfriend first.
+Action: quark_search
+Action Input: {"query": "Who is Olivia Wilde's boyfriend?"}
+
+<</SYS>>Is paypal stock doing good today?[/INST]   Thought: I need to check the current status of PayPal's stock performance.
+
+Action: quark_search
+Action Input: {"query": "PayPal stock price today"}         
